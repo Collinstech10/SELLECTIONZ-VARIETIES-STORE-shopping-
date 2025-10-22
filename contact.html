@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Contact</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="brand">SELLECTIONZ VARIETIES STORE</div><nav><a href="index.html">Home</a><a href="shop.html">Shop</a></nav></header>
+<main class="container"><h1>Contact Us</h1>
+<form id="contact-form">
+  <label>Name <input id="contact-name" required></label>
+  <label>Email <input id="contact-email" type="email" required></label>
+  <label>Message <textarea id="contact-message" required></textarea></label>
+  <button type="submit" class="btn">Send</button>
+</form>
+</main><footer class="footer"><p>&copy; SELLECTIONZ VARIETIES STORE</p></footer>
+<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script>
+emailjs.init("99FFfPyHHtLcv7wK-");
+document.getElementById('contact-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  emailjs.send('service_uioj559','template_53azhem',{
+    full_name:document.getElementById('contact-name').value,
+    customer_email:document.getElementById('contact-email').value,
+    phone:'',
+    address:'',
+    order_details:document.getElementById('contact-message').value
+  }).then(()=>{alert('Message sent!');document.getElementById('contact-form').reset();}).catch(()=>{alert('Failed to send message');});
+});
+</script></body></html>
