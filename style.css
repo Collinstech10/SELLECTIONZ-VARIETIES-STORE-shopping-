@@ -1,0 +1,18 @@
+/* Basic styling - responsive */
+:root{--gold:#d4af37;--green:#2f8f4b;--orange:#ff8c42;--bg:#fff;}
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{margin:0;background:var(--bg);color:#222}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#111;color:#fff}
+.nav a{color:#fff;margin-left:12px;text-decoration:none}
+.brand{font-weight:700}
+.container{padding:20px;max-width:1100px;margin:0 auto}
+.hero{padding:40px 0;text-align:center}
+.btn{background:var(--gold);color:#111;padding:10px 16px;border-radius:8px;text-decoration:none;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.card{padding:16px;border-radius:8px;background:#f9f9f9}
+.footer{text-align:center;padding:16px;background:#f1f1f1;margin-top:20px}
+.zara{margin-top:20px;border:1px dashed #ccc;padding:12px;border-radius:8px}
+.thankyou .car{width:80px;height:40px;background:var(--orange);border-radius:6px;margin:20px auto;animation:drive 4s linear infinite}
+@keyframes drive{0%{transform:translateX(-200px)}100%{transform:translateX(400px)}}
+label{display:block;margin:8px 0}input,textarea{width:100%;padding:8px;margin-top:4px;border-radius:6px;border:1px solid #ddd}
+@media(min-width:700px){.nav a{margin-left:20px}}

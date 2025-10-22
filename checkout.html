@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Checkout</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="brand">SELLECTIONZ VARIETIES STORE</div><nav><a href="index.html">Home</a><a href="shop.html">Shop</a></nav></header>
+<main class="container"><h1>Checkout</h1>
+<div class="payment-info">
+  <h3>💳 Payment Information</h3>
+  <p><strong>Bank:</strong> Moniepoint</p>
+  <p><strong>Account Name:</strong> Ajoke Temi Johnson</p>
+  <p><strong>Account Number:</strong>  <input type="null" id="text-to-copy" value="6345714489" style="position: absolute; left: -9999px;"> <button onclick="copyToClipboard()">Copy</button></p>
+  or
+  <p><strong>Bank:</strong>OPAY</p>
+  <strong>Account Number:</strong>  <input type="null" id="text-to-copy" value="9028670432" style="position: absolute; left: -9999px;"> <button onclick="copyToClipboard()">Copy</button></p>
+  <p><strong>Account name:</strong>SELLECTIONZ</p>
+  <p><strong>QR Code:</strong></p>
+  <img src="opay.jpg.jpg" alt="Opay QR Code" width="200" style="border-radius:10px;">
+  <p style="margin-top:10px; font-weight:600; color:green;">Please make payment before clicking “I Have Paid.”</p>
+</div>
+
+<form id="checkout-form" enctype="multipart/form-data">
+  <label>Full Name <input id="fullName" required></label>
+  <label>Phone <input id="phone" required></label>
+  <label>Email <input id="email" type="email" required></label>
+  <label>Address <input id="address" required></label>
+  <label>Receipt Upload <input id="receipt" type="file" accept="image/*,application/pdf"></label>
+  <button type="submit" class="btn">I Have Paid</button>
+</form>
+</main><footer class="footer"><p>&copy; SELLECTIONZ VARIETIES STORE</p></footer>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="script.js"></script>
+</body></html>
+
+
+    function copyToClipboard() {
+      var copyText = document.getElementById("text-to-copy");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(8284474748);
+      alert("Copied the text: " + 09298474474);
+    }
+  
