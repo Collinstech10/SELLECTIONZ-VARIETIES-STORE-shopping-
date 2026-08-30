@@ -1,6 +1,8 @@
 
 // SELLECTIONZ - script.js
-if(window.emailjs){ try{ emailjs.init("99FFfPyHHtLcv7wK-"); }catch(e){} }
+if (window.emailjs) {
+  emailjs.init("99FFfPyHHtLcv7wK-");
+}
 
 const PRODUCTS = [
   {id:1,name:"Classic Ankara Fabric",price:3500,category:"fabrics",image:""},
@@ -14,7 +16,7 @@ function renderProducts(){
   PRODUCTS.forEach(p=>{
     const div = document.createElement('div');
     div.className='card';
-    div.innerHTML = `<h4>${p.name}</h4><p>₦${p.price}</p><button onclick='addToCart(${p.id})' class='btn'>Add to Cart</button>`;
+    div.innerHTML = `<h4>${p.name}</h4><p class="price">₦${p.price.toLocaleString()}</p><p>${p.category}</p><button onclick='addToCart(${p.id})' class='btn'>Add to Cart</button>`;
     grid.appendChild(div);
   });
 }
@@ -38,8 +40,8 @@ function loadCart(){
   const items = getCart();
   const container = document.getElementById('cart-items');
   const summary = document.getElementById('cart-summary');
-  if(container) container.innerHTML = items.map(it=>`<div>${it.name} - ₦${it.price} x ${it.quantity}</div>`).join('') || '<p>Cart is empty</p>';
-  if(summary) summary.innerHTML = `<p>Total: ₦${calculateTotal(items)}</p>`;
+  if(container) container.innerHTML = items.map(it=>`<div class="cart-item"><span>${it.name}</span><strong>₦${it.price.toLocaleString()} x ${it.quantity}</strong></div>`).join('') || '<p>Cart is empty</p>';
+  if(summary) summary.innerHTML = `<p>Total: ₦${calculateTotal(items).toLocaleString()}</p>`;
   const link = document.getElementById('checkout-link');
   if(link) link.style.pointerEvents = items.length? 'auto':'none';
 }
@@ -47,6 +49,46 @@ function loadCart(){
 const WHATSAPP_NUMBER = '2349028670432';
 const EMAIL_SERVICE = 'service_uioj559';
 const EMAIL_TEMPLATE = 'template_53azhem';
+const PAYSTACK_PUBLIC_KEY = 'pk_live_eb2af552514f29bf33169bfc9432666c26d26bd1';
+
+function buildOrderDetails(items){
+  return items.map(item=>`${item.name} (₦${item.price} x ${item.quantity})`).join("\n");
+}
+
+function buildWhatsAppUrl(order){
+  const message = `Hello SELLECTIONZ! I have completed my Paystack payment.\n\nPayment Reference: ${order.reference}\n\nOrder Details:\n${order.productList}\n\nName: ${order.fullName}\nPhone: ${order.phone}\nAddress: ${order.address}\nTotal: ₦${order.totalPrice}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function completePaidOrder(order){
+  const redirectToWhatsApp = () => {
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('cartTotal');
+    window.location.href = buildWhatsAppUrl(order);
+  };
+
+  if(window.emailjs){
+    emailjs.send(EMAIL_SERVICE, EMAIL_TEMPLATE, {
+      full_name: order.fullName,
+      customer_email: order.email,
+      phone: order.phone,
+      address: order.address,
+      total: order.totalPrice,
+      payment_reference: order.reference,
+      order_details: order.productList
+    }).then(function(resp){
+      console.log('Email sent',resp);
+      redirectToWhatsApp();
+    }).catch(function(err){
+      console.error('Email error',err);
+      alert('Payment successful. We could not send the email automatically, so we will open WhatsApp for confirmation.');
+      redirectToWhatsApp();
+    });
+  } else {
+    alert('Payment successful. Email service is not available, so we will open WhatsApp for confirmation.');
+    redirectToWhatsApp();
+  }
+}
 
 function submitCheckoutForm(e){
   e.preventDefault && e.preventDefault();
@@ -56,32 +98,40 @@ function submitCheckoutForm(e){
   const address = document.getElementById('address').value || '';
   const items = getCart();
   if(!items.length){ alert('Your cart is empty'); return; }
-  const productList = items.map(item=>`${item.name} (₦${item.price} x ${item.quantity})`).join("\n");
+  const productList = buildOrderDetails(items);
   const totalPrice = calculateTotal(items);
 
-  if(window.emailjs){
-    emailjs.send(EMAIL_SERVICE, EMAIL_TEMPLATE, {
-      full_name: fullName,
-      customer_email: email,
-      phone: phone,
-      address: address,
-      total: totalPrice,
-      order_details: productList
-    }).then(function(resp){
-      console.log('Email sent',resp);
-      const message = `Hello SELLECTIONZ! I have completed my payment.\n\nOrder Details:\n${productList}\n\nName: ${fullName}\nPhone: ${phone}\nAddress: ${address}\nTotal: ₦${totalPrice}`;
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      localStorage.removeItem('cartItems'); localStorage.removeItem('cartTotal');
-      // wait briefly then redirect
-      setTimeout(()=>{ window.location.href = url; }, 300);
-    }).catch(function(err){ console.error('Email error',err); alert('Failed to send order. Please try again.'); });
-  } else {
-    alert('Email service not available. Redirecting to WhatsApp.');
-    const message = `Hello SELLECTIONZ! I have completed my payment.\n\nOrder Details:\n${productList}\n\nName: ${fullName}\nPhone: ${phone}\nAddress: ${address}\nTotal: ₦${totalPrice}`;
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    localStorage.removeItem('cartItems'); localStorage.removeItem('cartTotal');
-    window.location.href = url;
+  if(typeof PaystackPop === 'undefined'){
+    alert('Paystack is not available right now. Please check your connection and try again.');
+    return;
   }
+
+  const popup = new PaystackPop();
+  popup.newTransaction({
+    key: PAYSTACK_PUBLIC_KEY,
+    email: email,
+    amount: totalPrice * 100,
+    currency: 'NGN',
+    reference: `SEL-${Date.now()}`,
+    label: fullName,
+    firstName: fullName.split(' ')[0] || fullName,
+    phone: phone,
+    metadata: {
+      customer_name: fullName,
+      customer_phone: phone,
+      delivery_address: address,
+      order_items: items
+    },
+    onSuccess: function(transaction){
+      completePaidOrder({ fullName, phone, email, address, productList, totalPrice, reference: transaction.reference });
+    },
+    onCancel: function(){
+      alert('Payment was cancelled. Your cart is still available.');
+    },
+    onError: function(error){
+      alert(`Unable to start Paystack payment: ${error.message}`);
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -125,5 +175,3 @@ function zaraShowProducts(){
   if(!PRODUCTS || !PRODUCTS.length){ resp.textContent = 'Sorry, can\'t access the information now.'; return; }
   resp.innerHTML = '<strong>Available products:</strong><br>' + PRODUCTS.map(p=>`- ${p.name} (₦${p.price})`).join('<br>');
 }
-
-

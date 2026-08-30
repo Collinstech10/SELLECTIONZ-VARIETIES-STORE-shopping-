@@ -1,13 +1,31 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Shop - SELLECTIONZ</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="nav"><div class="brand">SELLECTIONZ VARIETIES STORE</div><nav><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="cart.html">Cart</a></nav></header>
-<main class="container">
-  <h1>Shop</h1>
-  <div id="product-grid" class="grid"></div>
-  <div id="zara" class="zara">
-    <button onclick="zaraShowProducts()">Ask Zara what's available</button>
-    <div id="zara-response"></div>
-  </div>
-</main>
-<footer class="footer"><p>&copy; SELLECTIONZ VARIETIES STORE</p></footer>
-<script src="script.js"></script>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Shop - SELLECTIONZ</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html">SELLECTIONZ</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+      <a id="auth-btn" href="login.html">Login</a>
+    </nav>
+  </header>
+  <main class="container section">
+    <div class="section-heading"><p class="eyebrow">Shop now</p><h1>Featured Products</h1><p>Choose your favorites and add them to your cart.</p></div>
+    <div id="product-grid" class="grid products"></div>
+    <section id="zara" class="zara">
+      <h2>Need help choosing?</h2>
+      <p>Ask Zara to quickly list what is currently available.</p>
+      <button class="btn btn-secondary" type="button" onclick="zaraShowProducts()">Ask Zara what's available</button>
+      <div id="zara-response" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>&copy; 2026 SELLECTIONZ Varieties Store. Quality goods, reliable service.</p>
+  </footer>
+  <script src="script.js"></script>
 </body></html>
