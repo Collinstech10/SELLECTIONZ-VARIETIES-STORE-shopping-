@@ -1,13 +1,21 @@
-<!doctype html?><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Register</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="nav"><div class="brand">SELLECTIONZ VARIETIES STORE</div></header>
-<main class="container">
-  <h1>Register</h1>
-  <form id="register-form">
-    <label>Full Name <input id="reg-name" required></label>
-    <label>Email <input id="reg-email" type="email" required></label>
-    <label>Password <input id="reg-password" type="password" required></label>
-    <button class="btn" type="submit">Register</button>
-  </form>
-</main>
-<script src="script.js"></script>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Register - SELLECTIONZ</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <header class="nav"><a class="brand" href="index.html">SELLECTIONZ</a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a><a id="auth-btn" href="login.html">Login</a></nav></header>
+  <main class="container account-page">
+    <section class="account-promo">
+      <p class="eyebrow">Join SVS</p>
+      <h1>Create your shopping dashboard.</h1>
+      <p>Register to keep your shopping experience smooth, personal, and ready whenever you return.</p>
+      <div class="account-perks"><span>Curated products</span><span>Secure Paystack payment</span><span>WhatsApp confirmation</span></div>
+    </section>
+    <section class="account-panel">
+      <div class="section-heading"><p class="eyebrow">Create account</p><h2>Register</h2></div>
+      <form id="register-form" class="form-card"><label>Full Name <input id="reg-name" autocomplete="name" required></label><label>Email <input id="reg-email" type="email" autocomplete="email" required></label><label>Password <input id="reg-password" type="password" autocomplete="new-password" required></label><button class="btn" type="submit">Create Account</button></form>
+      <p class="switch-link">Already registered? <a href="login.html">Login instead</a></p>
+    </section>
+  </main>
+  <footer class="footer"><p>&copy; 2026 SELLECTIONZ Varieties Store. Quality goods, reliable service.</p></footer>
+  <script src="script.js"></script>
 </body></html>

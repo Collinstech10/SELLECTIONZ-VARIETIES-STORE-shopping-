@@ -1,39 +1,22 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Checkout</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="nav"><div class="brand">SELLECTIONZ VARIETIES STORE</div><nav><a href="index.html">Home</a><a href="shop.html">Shop</a></nav></header>
-<main class="container"><h1>Checkout</h1>
-<div class="payment-info">
-  <h3>💳 Payment Information</h3>
-  <p><strong>Bank:</strong> Moniepoint</p>
-  <p><strong>Account Name:</strong> Ajoke Temi Johnson</p>
-  <p><strong>Account Number:</strong>  <input type="null" id="text-to-copy" value="6345714489" style="position: absolute; left: -9999px;"> <button onclick="copyToClipboard()">Copy</button></p>
-  or
-  <p><strong>Bank:</strong>OPAY</p>
-  <strong>Account Number:</strong>  <input type="null" id="text-to-copy" value="9028670432" style="position: absolute; left: -9999px;"> <button onclick="copyToClipboard()">Copy</button></p>
-  <p><strong>Account name:</strong>SELLECTIONZ</p>
-  <p><strong>QR Code:</strong></p>
-  <img src="opay.jpg.jpg" alt="Opay QR Code" width="200" style="border-radius:10px;">
-  <p style="margin-top:10px; font-weight:600; color:green;">Please make payment before clicking “I Have Paid.”</p>
-</div>
-
-<form id="checkout-form" enctype="multipart/form-data">
-  <label>Full Name <input id="fullName" required></label>
-  <label>Phone <input id="phone" required></label>
-  <label>Email <input id="email" type="email" required></label>
-  <label>Address <input id="address" required></label>
-  <label>Receipt Upload <input id="receipt" type="file" accept="image/*,application/pdf"></label>
-  <button type="submit" class="btn">I Have Paid</button>
-</form>
-</main><footer class="footer"><p>&copy; SELLECTIONZ VARIETIES STORE</p></footer>
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script src="script.js"></script>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Checkout - SELLECTIONZ</title><link rel="stylesheet" href="style.css"></head><body>
+  <header class="nav">
+    <a class="brand" href="index.html">SELLECTIONZ</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+      <a id="auth-btn" href="login.html">Login</a>
+    </nav>
+  </header>
+  <main class="container section checkout-layout"><section><div class="section-heading"><p class="eyebrow">Pay with Paystack</p><h1>Complete Your Order</h1><p>Enter your delivery details and pay securely online through Paystack.</p></div>
+  <form id="checkout-form" class="form-card" enctype="multipart/form-data"><label>Full Name <input id="fullName" autocomplete="name" required></label><label>Phone <input id="phone" autocomplete="tel" required></label><label>Email <input id="email" type="email" autocomplete="email" required></label><label>Address <input id="address" autocomplete="street-address" required></label><label>Receipt Upload <input id="receipt" type="file" accept="image/*,application/pdf"></label><button type="submit" class="btn">Pay with Paystack</button><p class="form-note">After successful payment, your order details will be sent to SELLECTIONZ for confirmation.</p></form></section>
+  <aside class="payment-info paystack-card"><h2>Secure Online Payment</h2><p>Payments are processed by Paystack using card, bank transfer, USSD, and other supported channels.</p><ul><li>No manual account transfer is required.</li><li>Your cart total is charged in Nigerian naira.</li><li>Keep your Paystack reference for order tracking.</li></ul><p class="note">Click “Pay with Paystack” only when your order details are correct.</p></aside></main>
+  <footer class="footer">
+    <p>&copy; 2026 SELLECTIONZ Varieties Store. Quality goods, reliable service.</p>
+  </footer>
+  <script src="https://js.paystack.co/v2/inline.js"></script><script src="https://cdn.emailjs.com/dist/email.min.js"></script><script src="script.js"></script>
 </body></html>
-
-
-    function copyToClipboard() {
-      var copyText = document.getElementById("text-to-copy");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(8284474748);
-      alert("Copied the text: " + 09298474474);
-    }
-  

@@ -3,40 +3,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SELLECTIONZ VARIETIES STORE</title>
+  <title>SELLECTIONZ Varieties Store | Quality Products</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="intro-animation" aria-hidden="true">
+    <div class="intro-logo">SVS</div>
+    <p>SELLECTIONZ Varieties Store</p>
+  </div>
+
   <header class="nav">
-    <div class="brand">SELLECTIONZ VARIETIES STORE</div>
-    <nav>
+    <a class="brand" href="index.html">SELLECTIONZ</a>
+    <nav aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
-      
+      <a href="cart.html">Cart</a>
+      <a id="auth-btn" href="login.html">Login</a>
     </nav>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Welcome to SELLECTIONZ</h1>
-      <p>Quality products. Local & international shipping.</p>
-      <a class="btn" href="shop.html">Start Shopping</a>
+  <main>
+    <section class="hero storefront-hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Fabrics • Fashion • Baby essentials</p>
+          <h1>Your one-stop varieties store for everyday style.</h1>
+          <p class="hero-copy">Discover curated fabrics, fashion pieces, baby-care essentials, and practical goods selected for quality, value, and dependable delivery.</p>
+          <div class="actions">
+            <a class="btn" href="shop.html">Shop New Arrivals</a>
+            <a class="btn btn-secondary" href="register.html">Create Account</a>
+          </div>
+          <div class="trust-strip" aria-label="Store benefits">
+            <span>Secure Paystack checkout</span>
+            <span>WhatsApp order confirmation</span>
+            <span>Nigeria & international delivery</span>
+          </div>
+        </div>
+        <div class="shopping-showcase" aria-label="Shopping highlights">
+          <div class="showcase-card featured"><span>SVS Pick</span><strong>Premium Ankara</strong><small>Exclusive prints ready for your next design.</small></div>
+          <div class="showcase-card"><span>Fashion</span><strong>Fresh outfits</strong><small>Men and women collections for daily wear.</small></div>
+          <div class="showcase-card"><span>Family</span><strong>Baby essentials</strong><small>Helpful products selected with care.</small></div>
+        </div>
+      </div>
     </section>
 
-    <section class="features">
-      <div class="card"><h3>Fabrics</h3><p>Exclusive patterns</p></div>
-      <div class="card"><h3>Fashion</h3><p>Men & Women</p></div>
-      <div class="card"><h3>Baby</h3><p>Care products</p></div>
+    <section class="container section">
+      <div class="section-heading">
+        <p class="eyebrow">Shop by department</p>
+        <h2>Everything selected for value</h2>
+      </div>
+      <div class="grid features">
+        <article class="card"><h3>Fabrics</h3><p>Beautiful Ankara and exclusive patterns for standout styles.</p><a href="shop.html">Browse fabrics</a></article>
+        <article class="card"><h3>Fashion</h3><p>Fresh wardrobe picks for men and women.</p><a href="shop.html">Explore fashion</a></article>
+        <article class="card"><h3>Baby Care</h3><p>Helpful essentials for growing families.</p><a href="shop.html">Shop baby care</a></article>
+      </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>&copy; SELLECTIONZ VARIETIES STORE</p>
+    <p>&copy; 2026 SELLECTIONZ Varieties Store. Quality goods, reliable service.</p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
